@@ -1,20 +1,16 @@
 package MainWindow;
-import java.applet.Applet;
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import javax.swing.JApplet;
-import javax.swing.JButton;
 
 import Connection.ConnectionThread;
 import Connection.Receiver;
@@ -24,6 +20,7 @@ import Thingy.Piece;
 
 // SR = mUi 에서 모든 데이터가 관리되며 그리는 처리 수행
 // 송신측 sender와 수신측 receiver의 매개 (양자는 상대의 버퍼를 서로 볼 수 없으므로 필요함)
+@SuppressWarnings("serial")
 public class SR extends JApplet {
 	// var
 	private final static int SIZE_BUFFER = 20;
@@ -52,12 +49,15 @@ public class SR extends JApplet {
 		setLayout(null);
 		initBtnSnd();
 		setSize(1000, 500);
+		
 		setVisible(true);
 	} // func
 	
 	private void initBtnSnd() {
-		Button btnSnd = new Button("send new");
-		btnSnd.setBounds(50, 15, 100, 30);
+		final int x = OFFSET_X_SENDER_SLOT + ((MARGIN_SLOT + WIDTH_SLOT) * (mBufferSender.length - 1)) + DISTANCE_TO_TEXT;
+		final int y = OFFSET_Y_SENDER_SLOT + (DISTANCE_BETWEEN_BUFFERS / 2);
+		Button btnSnd = new Button("SEND NEW");
+		btnSnd.setBounds(x, y, 100, 50);
 		btnSnd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -171,9 +171,15 @@ public class SR extends JApplet {
 	    drawFlyings(graphics, 
 	    		OFFSET_X_SENDER_SLOT, OFFSET_Y_SENDER_SLOT, 
 	    		MARGIN_SLOT, WIDTH_SLOT, HEIGHT_SLOT);
+	    drawCredits(graphics);
 	    
 	    g.drawImage(image, 0, 0, this);
 	} // func
+	
+	private void drawCredits(Graphics g) {
+		g.setColor(Color.GRAY);
+		g.drawString("2016월 12월 19일 / 2012154021 문동선 / 2010152003 김민수", 30, 30);
+	}
 	
 	private void drawFlyings(Graphics g, 
 			int offsetBufferSenderX, int offsetBufferSenderY, 

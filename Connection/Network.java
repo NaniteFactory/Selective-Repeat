@@ -1,6 +1,4 @@
 package Connection;
-import java.io.IOException;
-import java.net.UnknownHostException;
 
 public interface Network {
 	int PORT_SENDER = 3049;

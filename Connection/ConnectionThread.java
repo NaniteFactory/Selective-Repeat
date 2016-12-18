@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.DatagramPacket;
-
-import javax.swing.JOptionPane;
 
 public abstract class ConnectionThread extends Thread {
 	public static interface OnReceivedListener {
