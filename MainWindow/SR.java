@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-import javax.swing.JApplet;
+import javax.swing.JFrame;
 
 import Connection.ConnectionThread;
 import Connection.Receiver;
@@ -21,7 +21,7 @@ import Thingy.Piece;
 // SR = mUi 에서 모든 데이터가 관리되며 그리는 처리 수행
 // 송신측 sender와 수신측 receiver의 매개 (양자는 상대의 버퍼를 서로 볼 수 없으므로 필요함)
 @SuppressWarnings("serial")
-public class SR extends JApplet {
+public class SR extends JFrame {
 	// var
 	private final static int SIZE_BUFFER = 20;
 	private BufferSlot[] mBufferSender = new BufferSlot[SIZE_BUFFER];	
@@ -48,8 +48,10 @@ public class SR extends JApplet {
 		//
 		setLayout(null);
 		initBtnSnd();
-		setSize(1000, 500);
-		
+		setSize(1024, 600);
+		setBackground(Color.WHITE);
+		setTitle("SelectiveRepeat");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	} // func
 	
@@ -139,7 +141,7 @@ public class SR extends JApplet {
 	
 	// const ui offsets and stuff
 	public static final int OFFSET_X_SENDER_SLOT = 50;
-	public static final int OFFSET_Y_SENDER_SLOT = 80;
+	public static final int OFFSET_Y_SENDER_SLOT = 140;
 	public static final int MARGIN_SLOT = 10;
 	public static final int WIDTH_SLOT = 20;
 	public static final int HEIGHT_SLOT = 60;
@@ -178,7 +180,7 @@ public class SR extends JApplet {
 	
 	private void drawCredits(Graphics g) {
 		g.setColor(Color.GRAY);
-		g.drawString("2016월 12월 19일 / 2012154021 문동선 / 2010152003 김민수", 30, 30);
+		g.drawString("2016월 12월 19일 / 2012154021 문동선 / 2010152003 김민수", 30, 70);
 	}
 	
 	private void drawFlyings(Graphics g, 
